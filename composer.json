@@ -6,7 +6,8 @@
   "require": {
     "php": ">=5.6.28",
     "filp/whoops":"*",
-    "hassankhan/config":"*"
+    "hassankhan/config":"*",
+    "monolog/monolog":"*"
   },
   "repositories": {
     "packagist": {

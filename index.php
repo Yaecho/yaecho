@@ -1,15 +1,28 @@
 <?php 
 require 'vendor/autoload.php';
 
-define("MOMOMA_PATH", dirname(__FILE__)); //项目根目录
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Noodlehaus\Config;
+
+define("YAECHO_PATH", dirname(__FILE__)); //项目根目录
+
 // Config
-$conf = new \Noodlehaus\Config(MOMOMA_PATH. '/config/conf.php');
-//echo $conf->get('debug');
-//echo $conf['debug'];
+$conf = new Config(YAECHO_PATH. '/config/conf.php');
 
 // Whoops
-$whoops = new \Whoops\Run;
-$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-$whoops->register();
+if($conf->get('debug')) {
+    $whoops = new \Whoops\Run;
+    $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+    $whoops->register();
+}
 
-echo 123;
+//logger
+$log = new Logger('yaecho');
+$log->pushHandler(new StreamHandler(YAECHO_PATH.'/runtime/log/'.date('Y-m-d', time()).'.log', Logger::DEBUG));
+
+$log->warning('Foo');
+$log->error('Bar');
+
+
+require_once YAECHO_PATH . '/core/init.php'; //引入框架核心文件

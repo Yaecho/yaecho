@@ -9,4 +9,5 @@ return array(
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Noodlehaus\\' => array($vendorDir . '/hassankhan/config/src'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
 );
