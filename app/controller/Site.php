@@ -2,8 +2,12 @@
 namespace app\controller;  
 
 class Site {
-    function index()
+    public function actionIndex()
     {
         echo 123;
+    }
+    public function actionMySecondFun()
+    {
+        echo 'my second fun';
     }
 }

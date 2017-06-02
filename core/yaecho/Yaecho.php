@@ -15,7 +15,8 @@ class Yaecho {
 
     public function run(){
         $this->route();
-        $class = "\\app\\controller\\".ucfirst($this->controller);
+
+        $class = "\\app\\controller\\".$this->controller;
         $obj = new $class();
         $action = $this->action;
         $obj->$action();
@@ -30,6 +31,23 @@ class Yaecho {
         $r = explode('/', $r);
 
         $this->controller = !empty($r[0])?$r[0]:$this->config['defaultController'];
-        $this->action = !empty($r[1])?$r[1]:$this->config['defaultAction'];            
+        $this->controller = $this->nameFormat($this->controller);
+
+        $this->action = !empty($r[1])?$r[1]:$this->config['defaultAction'];
+        $this->action = $this->nameFormat($this->action, false);            
+    }
+
+    // 控制器，方法命名格式化
+    protected function nameFormat($name, $isController = true)
+    {
+        $name = strtolower($name);
+        $name = explode('-', $name);
+        $res = '';
+        foreach($name as $value){
+            $res .= ucfirst($value);
+        }
+
+        return $isController?$res:'action'.$res;
+        
     }
 }
