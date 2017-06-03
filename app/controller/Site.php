@@ -1,13 +1,16 @@
 <?php
 namespace app\controller;  
 
-class Site {
+use core\yaecho\Controller;
+
+class Site extends Controller
+{
     public function actionIndex()
     {
-        echo 123;
+        return $this->render('index', ['data'=>123]);
     }
     public function actionMySecondFun()
     {
-        echo 'my second fun';
+        return 'my second fun';
     }
 }

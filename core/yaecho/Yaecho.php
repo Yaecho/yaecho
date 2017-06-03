@@ -16,10 +16,11 @@ class Yaecho {
     public function run(){
         $this->route();
 
-        $class = "\\app\\controller\\".$this->controller;
+        $class = '\\'.$this->config['appPath'].'\\'.$this->config['controllerPath'].'\\'.$this->controller;
         $obj = new $class();
+
         $action = $this->action;
-        $obj->$action();
+        echo $obj->$action();
     }
 
     // 路由处理
