@@ -10,7 +10,7 @@ class Yaecho {
 
     public function __construct()
     {
-        $this->config = new Config(YAECHO_PATH.'/config/conf.php');
+        $this->config = $GLOBALS['config'];
     }
 
     public function run(){

@@ -11,7 +11,7 @@ class Controller
 
     public function __construct()
     {
-        $this->config = new Config(YAECHO_PATH.'/config/conf.php');
+        $this->config = $GLOBALS['config'];
         $this->templates = new Engine(YAECHO_PATH.'/'.$this->config['appPath'].'/'.$this->config['templatePath']);
     }
 
