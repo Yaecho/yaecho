@@ -8,11 +8,11 @@ class Site extends Controller
 {
     public function actionIndex()
     {
+        $m = new duwehfuwef();
         $model = new BaseModel();
         $res = $model->select('img');
         $data = $res->all();
         var_dump($data);
-        echo 2/0;
         echo $_GET['wwew'];
         return $this->render('index', ['data'=>123]);
     }
