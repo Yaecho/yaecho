@@ -1,23 +1,22 @@
 <?php
+
 namespace app\controller;  
 
 use core\yaecho\Controller;
-use core\yaecho\BaseModel;
+use app\model\NoteModel;
 
 class Site extends Controller
 {
     public function actionIndex()
     {
-        $m = new duwehfuwef();
-        $model = new BaseModel();
-        $res = $model->select('img');
-        $data = $res->all();
-        var_dump($data);
-        echo $_GET['wwew'];
-        return $this->render('index', ['data'=>123]);
+        $model = new NoteModel();
+        $result = $model->field(true)->limit([2,3])->select();
+        var_dump($result);
+        //return $this->response(['list'=>$result]);
     }
-    public function actionMySecondFun()
+
+    public function actionTest()
     {
-        return 'my second fun';
+       
     }
 }
