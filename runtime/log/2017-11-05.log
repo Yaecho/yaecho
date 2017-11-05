@@ -1,0 +1,2 @@
+[2017-11-05 12:14:16] system.NOTICE: /home/jxc/Documents/notebook/back/api/core/yaecho/model/MysqlModel.php 127 Undefined property: app\model\NoteModel::$table [] []
+[2017-11-05 12:50:58] system.WARNING: /home/jxc/Documents/notebook/back/api/core/yaecho/model/MysqlModel.php 220 implode(): Invalid arguments passed [] []

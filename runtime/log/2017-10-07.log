@@ -1,0 +1,8 @@
+[2017-10-07 11:13:37] system.NOTICE: /home/jxc/Documents/notebook/back/api/core/yaecho/db/Mysqli.php 49 Trying to get property of non-object [] []
+[2017-10-07 11:14:28] system.NOTICE: /home/jxc/Documents/notebook/back/api/core/yaecho/BaseModel.php 122 Undefined index: where [] []
+[2017-10-07 11:14:54] system.WARNING: /home/jxc/Documents/notebook/back/api/core/yaecho/BaseModel.php 127 Invalid argument supplied for foreach() [] []
+[2017-10-07 11:42:53] system.WARNING: /home/jxc/Documents/notebook/back/api/app/controller/Site.php 14 syntax error, unexpected '=', expecting ']' [] []
+[2017-10-07 16:30:23] system.WARNING: /home/jxc/Documents/notebook/back/api/core/yaecho/BaseModel.php 219 Too few arguments to function core\yaecho\BaseModel::run(), 0 passed in /home/jxc/Documents/notebook/back/api/app/controller/Site.php on line 16 and exactly 1 expected [] []
+[2017-10-07 16:31:01] system.WARNING: /home/jxc/Documents/notebook/back/api/core/yaecho/BaseModel.php 147 Cannot access private property core\yaecho\db\Mysqli::$mysqli [] []
+[2017-10-07 21:44:28] system.NOTICE: /home/jxc/Documents/notebook/back/api/core/yaecho/BaseModel.php 83 Undefined index: field [] []
+[2017-10-07 22:02:28] system.NOTICE: /home/jxc/Documents/notebook/back/api/core/yaecho/BaseModel.php 235 Undefined variable: sql [] []
