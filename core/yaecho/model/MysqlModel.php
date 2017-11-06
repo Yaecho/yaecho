@@ -247,9 +247,8 @@ class MysqlModel
     /**
      * 统计
      *
-     * @return void
-     * @author Yaecho 
-     * @todo 返回值
+     * @return int|bool
+     * @author Yaecho 2017-11-6 10:32:35
      */
     public function count()
     {
@@ -260,9 +259,10 @@ class MysqlModel
 
         $result = $this->db_driver->query($this->sql);
         if (is_array($result)) {
-            $result = reset($result)['num'];
+            return reset($result)['num'];
+        } else {
+            return false;
         }
-        return $result;
     }
 
     /**

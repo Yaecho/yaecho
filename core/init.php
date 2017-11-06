@@ -78,7 +78,6 @@ if ($GLOBALS['config']->get('debug')) {
 }
 
 // 自动加载
-//spl_autoload_register(__NAMESPACE__.'\yaecho\AutoLoader::loadprint');
 spl_autoload_register([new AutoLoader, 'loadprint']);
 // 框架核心入口
 $yaecho = new Yaecho();

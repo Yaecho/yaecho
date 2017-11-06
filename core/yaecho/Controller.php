@@ -15,52 +15,6 @@ class Controller
     }
 
     /**
-     * 获取请求参数
-     *
-     * @param string $method post\get...
-     * @param string $name 参数名称
-     * @param string $default 默认值
-     * @return array
-     */
-    public function request(string $method, string $name = null, string $default = null)
-    {
-        $data = array();
-        switch (strtolower($method)) {
-            case 'post':
-                $data = $_POST;
-                if (empty($data)) {
-                    $data = json_decode(file_get_contents('php://input'), true);
-                }
-                break;
-            case 'get':
-                $data = $_GET;
-                unset($data['r']);
-                break;
-        }
-        if (!is_null($name)) {
-            $data = isset($data[$name]) ? $data[$name] : (is_null($default) ? false : $default);
-        }
-        is_string($data) and $this->input_filter($data);
-        is_array($data) and array_walk_recursive($data,[$this, 'input_filter']);
-        return $data;
-    }
-
-    /**
-     * 安全过滤
-     *
-     * @param [type] $value
-     * @return void
-     */
-    private function input_filter(&$value){
-	    // TODO 其他安全过滤
-
-        // 过滤查询特殊字符
-        if(preg_match('/^(EXP|NEQ|GT|EGT|LT|ELT|OR|XOR|LIKE|NOTLIKE|NOT BETWEEN|NOTBETWEEN|BETWEEN|NOTIN|NOT IN|IN)$/i',$value)){
-            $value .= ' ';
-        }
-    }
-
-    /**
      * 返回json
      * 
      * @return void
