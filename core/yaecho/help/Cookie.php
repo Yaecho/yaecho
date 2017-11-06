@@ -6,15 +6,15 @@ class Cookie
 {
     /**
      * Cookie name - the name of the cookie.
-     * @var bool
+     * @var string
      */
-    private $name = false;
+    private $name = '';
     
     /**
      * Cookie value
      * @var string
      */
-    private $value = "";
+    private $value = '';
 
     /**
      * Cookie life time
@@ -24,13 +24,13 @@ class Cookie
 
     /**
      * Cookie domain
-     * @var bool
+     * @var string
      */
     private $domain = '';
 
     /**
      * Cookie path
-     * @var bool
+     * @var string
      */
     private $path = '';
 
@@ -44,13 +44,16 @@ class Cookie
      * 只允许http协议
      * @var bool
      */
-    private $httponly = true;
+    private $httponly = false;
 
     /**
      * Create or Update cookie.
      */
     public function create() {
-        return setcookie($this->name, $this->getValue(), $this->getTime(), $this->getPath(), $this->getDomain(), $this->getSecure(), true);
+        if (empty($this->name)) {
+            return false;
+        }
+        return setcookie($this->name, $this->value, $this->time, $this->path, $this->domain, $this->secure, $this->$httponly);
     }
 
     /**
@@ -58,6 +61,9 @@ class Cookie
      * @return mixed
      */
     public function get(){
+        if (empty($this->name)) {
+            return $_COOKIE;
+        }
         return $_COOKIE[$this->getName()];
     }
 
@@ -66,22 +72,15 @@ class Cookie
      * @return bool
      */
     public function delete(){
-        return setcookie($this->name, '', time() - 3600, $this->getPath(), $this->getDomain(), $this->getSecure(), true);
+        return setcookie($this->name, '', time() - 3600, $this->path, $this->domain, $this->secure, $this->$httponly);
     }
-
 
     /**
      * @param $domain
      */
     public function setDomain($domain) {
         $this->domain = $domain;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getDomain() {
-        return $this->domain;
+        return $this;
     }
 
     /**
@@ -89,13 +88,7 @@ class Cookie
      */
     public function setName($id) {
         $this->name = $id;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getName() {
-        return $this->name;
+        return $this;
     }
 
     /**
@@ -103,13 +96,7 @@ class Cookie
      */
     public function setPath($path) {
         $this->path = $path;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getPath() {
-        return $this->path;
+        return $this;
     }
 
     /**
@@ -117,13 +104,7 @@ class Cookie
      */
     public function setSecure($secure) {
         $this->secure = $secure;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getSecure() {
-        return $this->secure;
+        return $this;
     }
 
     /**
@@ -131,7 +112,7 @@ class Cookie
      */
     public function setTime($time) {
         // Create a date
-        $date = new DateTime();
+        $date = new \DateTime();
         // Modify it (+1hours; +1days; +20years; -2days etc)
         $date->modify($time);
         // Store the date in UNIX timestamp.
@@ -139,23 +120,19 @@ class Cookie
     }
 
     /**
-     * @return bool|int
-     */
-    public function getTime() {
-        return $this->time;
-    }
-
-    /**
      * @param string $value
      */
     public function setValue($value) {
         $this->value = $value;
+        return $this;
     }
 
     /**
-     * @return string
+     * @param bool $httponly
      */
-    public function getValue() {
-        return $this->value;
+    public function setHttpOnly($httponly)
+    {
+        $this->httponly = $httponly;
+        return $this;
     }
 }
