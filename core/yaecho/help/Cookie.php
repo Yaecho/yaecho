@@ -53,7 +53,7 @@ class Cookie
         if (empty($this->name)) {
             return false;
         }
-        return setcookie($this->name, $this->value, $this->time, $this->path, $this->domain, $this->secure, $this->$httponly);
+        return setcookie($this->name, $this->value, $this->time, $this->path, $this->domain, $this->secure, $this->httponly);
     }
 
     /**
@@ -64,7 +64,7 @@ class Cookie
         if (empty($this->name)) {
             return $_COOKIE;
         }
-        return $_COOKIE[$this->getName()];
+        return $_COOKIE[$this->name];
     }
 
     /**
@@ -72,7 +72,7 @@ class Cookie
      * @return bool
      */
     public function delete(){
-        return setcookie($this->name, '', time() - 3600, $this->path, $this->domain, $this->secure, $this->$httponly);
+        return setcookie($this->name, '', time() - 3600, $this->path, $this->domain, $this->secure, $this->httponly);
     }
 
     /**
@@ -117,6 +117,7 @@ class Cookie
         $date->modify($time);
         // Store the date in UNIX timestamp.
         $this->time = $date->getTimestamp();
+        return $this;
     }
 
     /**
